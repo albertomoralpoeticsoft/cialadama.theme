@@ -1,0 +1,62 @@
+footer {
+
+  .site-above-footer-wrap {
+
+    padding-top: 70px !important;
+
+    h4 {
+
+      color: var(--ast-global-color-5);
+    }
+
+    .wpforms-container {
+
+      form {
+
+        display: flex;
+        justify-content: center;
+
+        .wpforms-field-container {
+
+          width: 50%;
+          margin: 0 8px 0 0;
+
+          .wpforms-field.wpforms-field-email {
+
+            .wpforms-field-large.wpforms-field-required {
+              
+              &.wpforms-error {
+
+                border-color: var(--ast-global-color-5);
+              }
+            }
+          }
+
+          label.wpforms-error {
+
+            color: var(--ast-global-color-5);
+            margin: 8px 0 0 0;
+          }
+        }
+      }
+
+      .wpforms-confirmation-container {
+
+        color: var(--ast-global-color-5);
+      }
+    }
+  }
+
+  .site-primary-footer-wrap {
+
+    padding-top: 0;
+  }
+
+  .site-below-footer-wrap {
+
+    .ast-footer-copyright {
+      
+      color: var(--ast-global-color-5);
+    }
+  }
+}

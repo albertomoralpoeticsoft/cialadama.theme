@@ -1,0 +1,40 @@
+.edit-post-layout .interface-interface-skeleton__content {
+  
+  background-color: transparent;
+}
+
+.wp-block {
+
+  border: dotted 1px #ccc;
+}
+
+.edit-post-visual-editor .editor-styles-wrapper {
+
+  width: 100%;
+}
+
+.ast-separate-container .edit-post-visual-editor, 
+.ast-page-builder-template .edit-post-visual-editor, 
+.ast-plain-container .edit-post-visual-editor, 
+.ast-separate-container #wpwrap #editor .edit-post-visual-editor,
+.ast-separate-container .block-editor-writing-flow,
+.ast-max-width-layout.ast-plain-container 
+.edit-post-visual-editor 
+.block-editor-writing-flow,
+.edit-post-visual-editor__content-area > div {
+
+  background-color: var(--ast-global-color-4) !important;
+}
+
+.ast-page-builder-template .editor-styles-wrapper, 
+.ast-plain-container .editor-styles-wrapper {
+
+  background-color: transparent;
+}
+
+.edit-post-visual-editor table,
+.edit-post-visual-editor th,
+.edit-post-visual-editor td {
+
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}

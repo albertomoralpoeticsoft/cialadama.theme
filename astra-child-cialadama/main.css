@@ -1,0 +1,322 @@
+/*!*************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/main.scss ***!
+  \*************************************************************************************************************/
+@charset "UTF-8";
+/**
+Theme Name: Astra Child CiaLaDama
+Author: Alberto Moral
+Author URI: https://poeticsoft.com/about
+Description: Astra child theme for Cia La Dama
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: astra-child-cialadama
+Template: astra
+*/
+table {
+  border: solid var(--ast-global-color-2);
+  border-width: 2px 0 1px 0;
+}
+table thead {
+  text-align: left;
+  border: solid var(--ast-global-color-2);
+  border-width: 2px 0;
+}
+table tr td {
+  border: dotted var(--ast-global-color-2);
+  border-width: 1px 0 0 0;
+}
+table tr:nth-child(even) td {
+  border: dotted #888;
+  border-width: 1px 0 0 0;
+}
+
+.has-drop-cap:not(:focus):first-letter {
+  font-family: "Cinzel", serif;
+  font-size: 6em;
+  line-height: 0.6em;
+  font-style: normal;
+  color: var(--ast-global-color-2);
+}
+
+#ast-desktop-header .site-primary-header-wrap .main-header-bar-navigation .sub-menu {
+  background-color: var(--ast-global-color-6);
+  padding: 8px 0;
+}
+
+.wp-block-search.wp-block-search__button-inside .wp-block-search__inside-wrapper {
+  padding: 0;
+  border: none;
+}
+.wp-block-search.wp-block-search__button-inside .wp-block-search__inside-wrapper .wp-block-search__button {
+  font-size: 80%;
+  padding: 1em 2em;
+}
+
+.post-password-form {
+  margin: 200px 0 0 0;
+}
+
+.MegaVideo {
+  width: 100%;
+  padding: 0 0 56.5% 0;
+  position: relative;
+}
+.MegaVideo iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.wp-block-group.nopadding {
+  padding: 0;
+}
+
+.wp-block-separator {
+  border-top: none;
+  border-bottom: none;
+  background-color: var(--ast-global-color-2);
+}
+
+.wp-block-image.Shadow img {
+  filter: drop-shadow(8px 8px 6px #000);
+}
+.wp-block-image.ShadowSoft img {
+  filter: drop-shadow(8px 8px 6px rgba(0, 0, 0, 0.3));
+}
+
+.wp-block-group.SlideEvent {
+  border-radius: 4px;
+}
+.wp-block-group.SlideEvent h3 {
+  margin-bottom: 0;
+}
+.wp-block-group.SlideEvent p {
+  margin-bottom: 0.2em;
+}
+.wp-block-group.SlideEvent .wp-block-buttons {
+  margin: 1em 0 0 0;
+}
+.wp-block-group.Video .TitleColumns {
+  margin: 0 0 1.6em 0;
+}
+.wp-block-group.Video .wp-block-separator {
+  margin-bottom: 0;
+}
+.wp-block-group.Video h3 {
+  margin-bottom: 0;
+}
+.wp-block-group.FilebirdGallery {
+  padding: 10% 10% 5%;
+}
+.wp-block-group.Text blockquote:before {
+  content: "“";
+  font-family: "Cinzel", serif;
+  font-size: 14em;
+  color: var(--ast-global-color-2);
+  display: block;
+  position: absolute;
+  top: -48px;
+  left: -111px;
+}
+.wp-block-group.Text blockquote > p {
+  font-style: normal;
+  font-size: 1.2em;
+}
+@media (max-width: 520px) {
+  .wp-block-group.Text blockquote {
+    margin: 1.5em 1em 1.5em 2em;
+    padding: 1.2em 0;
+  }
+  .wp-block-group.Text blockquote:before {
+    font-size: 12em;
+    top: -48px;
+    left: -111px;
+  }
+  .wp-block-group.Text blockquote > p {
+    font-style: normal;
+    font-size: 1.2em;
+  }
+}
+
+.wp-block-cover.NoPadding,
+.wp-block-cover-image.NoPadding {
+  padding: 0;
+}
+.wp-block-cover.FullSize,
+.wp-block-cover-image.FullSize {
+  min-height: 100%;
+  padding: 0;
+}
+
+.typed-wrapper {
+  text-align: center;
+}
+@media (max-width: 400px) {
+  .typed-wrapper {
+    margin-top: 20%;
+  }
+}
+.typed-wrapper span {
+  color: var(--ast-global-color-2) !important;
+  padding: 8px 16px;
+  background-color: var(--ast-global-color-6) !important;
+}
+@media (max-width: 400px) {
+  .typed-wrapper span {
+    font-size: 60%;
+  }
+}
+
+/* Photonic */
+.photonic-stream {
+  margin: 0 !important;
+}
+
+.photonic-slideshow-thumbs .splide__track {
+  margin: 0.7em 0 0 0 !important;
+}
+
+.wp-block-group.Donacion .wp-block-group__inner-container .wdgk_donation_content {
+  margin: 0 auto;
+  text-align: center;
+}
+.wp-block-group.Donacion .wp-block-group__inner-container .wdgk_donation_content .button.wdgk_add_donation {
+  padding: 16px 24px;
+}
+
+.Colaborador {
+  border-radius: 4px;
+}
+.Colaborador .Name {
+  margin-bottom: 0.5em;
+}
+
+.wp-block-buttons .wp-block-button a {
+  height: 50px;
+  padding-top: 0;
+  padding-bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--ast-global-color-1);
+}
+.wp-block-buttons .wp-block-button.IconButton a.wp-block-button__link {
+  padding: 0;
+  width: 50px;
+}
+.wp-block-buttons .wp-block-button.IconButton a.wp-block-button__link img {
+  opacity: 0.5;
+}
+
+.ast-builder-menu-1 .menu-item > .menu-link {
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+footer .site-above-footer-wrap {
+  padding-top: 70px !important;
+}
+footer .site-above-footer-wrap h4 {
+  color: var(--ast-global-color-5);
+}
+footer .site-above-footer-wrap .wpforms-container form {
+  display: flex;
+  justify-content: center;
+}
+footer .site-above-footer-wrap .wpforms-container form .wpforms-field-container {
+  width: 50%;
+  margin: 0 8px 0 0;
+}
+footer .site-above-footer-wrap .wpforms-container form .wpforms-field-container .wpforms-field.wpforms-field-email .wpforms-field-large.wpforms-field-required.wpforms-error {
+  border-color: var(--ast-global-color-5);
+}
+footer .site-above-footer-wrap .wpforms-container form .wpforms-field-container label.wpforms-error {
+  color: var(--ast-global-color-5);
+  margin: 8px 0 0 0;
+}
+footer .site-above-footer-wrap .wpforms-container .wpforms-confirmation-container {
+  color: var(--ast-global-color-5);
+}
+footer .site-primary-footer-wrap {
+  padding-top: 0;
+}
+footer .site-below-footer-wrap .ast-footer-copyright {
+  color: var(--ast-global-color-5);
+}
+
+body.postid-7317 .entry-summary p.price,
+body.postid-7317 .entry-summary form.cart {
+  display: none !important;
+}
+body.postid-7317 .wdgk_donation_content {
+  margin: 0 auto;
+  text-align: center;
+}
+body.postid-7317 .wdgk_donation_content .wdgk_display_option .wdgk_donation {
+  margin-bottom: 0 !important;
+}
+
+#wpforms-form-7902 .wpforms-error {
+  color: #ff7474;
+}
+#wpforms-form-7902 .wpforms-field-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4%;
+}
+#wpforms-form-7902 .wpforms-field-container .wpforms-field .wpforms-field-label {
+  margin-bottom: 5px;
+}
+@media (max-width: 640px) {
+  #wpforms-form-7902 .wpforms-field-container .wpforms-field .wpforms-one-half {
+    width: 100%;
+    margin-left: 0;
+  }
+  #wpforms-form-7902 .wpforms-field-container .wpforms-field .wpforms-one-half + .wpforms-one-half {
+    margin-top: 10px;
+  }
+}
+#wpforms-form-7902 .wpforms-field-container .wpforms-field.wpforms-field-name {
+  width: 100%;
+}
+#wpforms-form-7902 .wpforms-field-container .wpforms-field.wpforms-field-number {
+  width: 28%;
+}
+#wpforms-form-7902 .wpforms-field-container .wpforms-field.wpforms-field-text {
+  width: 68%;
+}
+@media (max-width: 640px) {
+  #wpforms-form-7902 .wpforms-field-container .wpforms-field.wpforms-field-text {
+    width: 100%;
+  }
+}
+#wpforms-form-7902 .wpforms-field-container .wpforms-field.wpforms-field-email {
+  width: 38%;
+}
+@media (max-width: 640px) {
+  #wpforms-form-7902 .wpforms-field-container .wpforms-field.wpforms-field-email {
+    width: 100%;
+  }
+}
+#wpforms-form-7902 .wpforms-field-container .wpforms-field.wpforms-field-textarea {
+  width: 58%;
+}
+@media (max-width: 640px) {
+  #wpforms-form-7902 .wpforms-field-container .wpforms-field.wpforms-field-textarea {
+    width: 100%;
+  }
+}
+#wpforms-form-7902 .wpforms-field-container .wpforms-field input {
+  max-width: 100%;
+}
+
+.susbstituteshortcode {
+  text-align: center;
+  margin-block-start: 100px;
+  margin-block-end: 100px;
+  color: var(--ast-global-color-3);
+}

@@ -1,0 +1,243 @@
+.MegaVideo {
+
+  width: 100%;
+  padding: 0 0 56.5% 0;
+  position: relative;
+
+  iframe {
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+}
+
+.wp-block-group.nopadding {
+
+  padding: 0;
+}
+
+.wp-block-separator {
+
+  border-top: none;
+  border-bottom: none;
+  background-color: var(--ast-global-color-2);
+}
+
+.wp-block-image {
+  
+  &.Shadow {
+
+    img {
+
+      filter: drop-shadow(8px 8px 6px #000);
+    }
+  }
+  
+  &.ShadowSoft {
+
+    img {
+
+      filter: drop-shadow(8px 8px 6px rgba(0, 0, 0, 0.3));
+    }
+  }
+}
+
+.wp-block-group {
+
+  &.SlideEvent {
+
+    border-radius: 4px;
+
+    h3 {
+
+      margin-bottom: 0;
+    }
+
+    p {
+
+      margin-bottom: 0.2em;
+    }
+
+    .wp-block-buttons {
+
+      margin: 1em 0 0 0;
+    }
+  }
+  
+  &.Video {
+
+    .TitleColumns {
+
+      margin: 0 0 1.6em 0;
+    }
+
+    .wp-block-separator {
+
+      margin-bottom: 0;
+    }
+    
+    h3 {
+
+      margin-bottom: 0;
+    }
+  }
+
+  &.FilebirdGallery {
+
+    padding: 10% 10% 5%;
+  }
+
+  &.Text {
+
+    blockquote {
+
+      &:before {
+
+        content: "“";
+        font-family: 'Cinzel', serif;
+        font-size: 14em;
+        color: var(--ast-global-color-2);
+        display: block;
+        position: absolute;
+        top: -48px;
+        left: -111px;
+      }
+
+      > p {
+
+        font-style: normal;
+        font-size: 1.2em;
+      }
+
+      @media (max-width: 520px) {    
+
+        margin: 1.5em 1em 1.5em 2em;    
+        padding: 1.2em 0;
+
+        &:before {
+
+          font-size: 12em;
+          top: -48px;
+          left: -111px;
+        }
+
+        > p {
+
+          font-style: normal;
+          font-size: 1.2em;
+        }
+      }
+    }
+  }
+}
+
+.wp-block-cover, 
+.wp-block-cover-image {
+
+  &.NoPadding {
+
+    padding: 0;
+  }
+  
+  &.FullSize {
+
+    min-height: 100%;
+    padding: 0;
+  }
+}
+
+.typed-wrapper {
+
+  text-align: center;
+  
+  @media (max-width: 400px){
+    
+    margin-top: 20%;
+  }
+
+  span {
+
+    color: var(--ast-global-color-2) !important;
+    padding: 8px 16px;
+    background-color: var(--ast-global-color-6) !important;
+  
+    @media (max-width: 400px){
+      
+      font-size: 60%;
+    }
+  }
+}
+
+/* Photonic */
+
+.photonic-stream {
+
+  margin: 0 !important;
+}
+
+.photonic-slideshow-thumbs .splide__track {
+
+  margin: 0.7em 0 0 0 !important;
+}
+
+.wp-block-group.Donacion {
+
+  .wp-block-group__inner-container {
+
+    .wdgk_donation_content {
+
+      margin: 0 auto;
+      text-align: center;
+
+      .button.wdgk_add_donation {
+
+        padding: 16px 24px;
+      }
+    }
+  }
+}
+
+.Colaborador {
+
+  border-radius: 4px;
+
+  .Name {
+
+    margin-bottom: 0.5em;
+  }
+}
+
+.wp-block-buttons {
+
+  .wp-block-button {
+
+    a {
+      
+      height: 50px;
+      padding-top: 0;
+      padding-bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--ast-global-color-1);
+    }
+  
+    &.IconButton {
+
+      a.wp-block-button__link { 
+
+        padding: 0;       
+        width: 50px;
+
+        img {
+          
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}
