@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "cia-la-dama",
+  "private_key_id": "c48947eed8c48672c0a5d80d6d131443f5f9f2eb",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDDeK5czGXHh/8P\nvP7QxrTIMSqWxiJmV5uqn0qYKht2OErjInzxTZhu/XSDJj2yg5xwxWvzyBUOu3fU\naPdym1D+rU5wHRutBD0JqRCTMRMjIATUz6RMjEdnOy33qLoBLGGa2wuSQ1xvmO9L\nAfWv3h3fhXtsr75xsNQgoLIgO/tGape79cdM9cV4I463+HGAvtUP/jamPMc5yKZl\nhfH5HQ7txUnlXsCezdiw5unCy35i9HE4GrEo6FTCkSbWNXH1NTqX7m/Ajmv4dznT\nZeQ/PR2S8XVQLRzPsUpNHJpmztNWrEv3LfaVJdZ8uXA/UN2UIO9E/WBTJ+9nxe9S\nqoiV17ZBAgMBAAECggEAERDVekUfIrVBI8Teo2ghyvOd8gVw5eoCrXoUR2YvuRnP\nkfaGHYQmiZQnyrZ5Pv9mFmNqGiHPEtbzrpAOgItGXkHPvhKQgsHCuXfw+kTX1KJ8\nQX8yazt5FW5xhDSPLsCK8fvrTfUDGjwqMiyE4HqeNZBgFvxd/muPjZyyCIXsGXjY\nX7wrxt2WDp8z9ayxm3O92CicTVbLazUEPcdQxCGKUU1WWFDA0tVcqbjCmaD5oEYm\ndYKlOFzbnMWR9Gtp25aMiEnSiFeR6WAjht3pZRxCpxjcoqB2UnG+pBbG+euFxPNP\nedw9Eyj8XmF2uOSArYBu8Po/HH2j6krdOF/q1blolQKBgQDiZJKQ09i0Mo5wgeKX\nnzJFQ50/Av8o2zA+cSR5pwKrIFOVrhwTtH7eWNurCwWHbrrWr1YKDo3HrI7M5Syo\nJe2gibMb5amZYarRiv2Rp4Ap2/kWh3WgFH/Us+5CKEKXDSbnzDgZi9Zc0qO4rBZj\nNqUs4sarX9tR4siBziS6j1dl7QKBgQDdCOLwLrbnUTndLHhhu3VZllU/LoFyTIuF\n1wcZ6x3e7VlhXrqzG6wp3ezfmi9ApLT30wuxKILMGUGHB8H7zA/+aw36k70ucici\n7Ae2wcQN3IH5RBZUl063bovF+bDKxJRCjE71PCJXRnmqRVtcIYCdxyGNIYdGlBbD\nG9f5do6HJQKBgElZ8KsAGKx53PDTBIm/yNfsSlyKKgYgzobMvda0qAauGKbcnLg9\nuQVtoO7QSWBSHjNE6AmmIYXagQIeFtP8RfvH4cJeLQ9HN8Ng1zuEG+B0J0aHaTMO\nsURHcCD7TmgGmN5tqpeMWU4F6YoCJ9bJc8cRSvFnw3XKltCH7BqOKvEZAoGAMaD8\nK4eho8CWKHYCtZb8m1fo3h3YDMzpCu0j+ArVkydhyT4W135gIqpktDQPZglVZMur\nNWTuMVt+Xg483QeNk8d/xQKFGLei1/F9LejF14LqYAiMpwOuNfuJQLN2oaCP1X1h\ngSi2YTg+ux+FiuMu2L5MZz7e+9bmYXqP/MBE8k0CgYBENPPCh8pH8ZwU/wXsyIRH\ndFjmxURWKebJr2Bk2pENm4R/vROuRg48CxhiGbU4j7yO1R97XX9mHpGLUL6adPlS\nsEuKtaoUVLDX1xGyTvkzDaYMsffJ0gyVp5UVughu0F31cpoVrgihqW4Qq5AYw1J/\n0qdeMjQasGZYegGiSi2tlA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "gestion-de-migracion-google-ph@cia-la-dama.iam.gserviceaccount.com",
+  "client_id": "106297939379837561464",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/gestion-de-migracion-google-ph%40cia-la-dama.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

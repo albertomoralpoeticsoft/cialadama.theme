@@ -6,7 +6,33 @@ require 'guzzle/vendor/autoload.php';
 use GuzzleHttp\Client;
 require 'firebase/vendor/autoload.php';
 use Firebase\JWT\JWT;
-use Firebase\JWT\Key;
+
+function cialadama_gsheets_getclienttoken($scope) { 
+
+  $creds = json_decode(file_get_contents(__DIR__ . '/cia-la-dama-c48947eed8c4.json'), true);
+  $now = time();
+  $jwt_payload = [
+    'iss' => $creds['client_email'],
+    'scope' => $scope,
+    'aud' => $creds['token_uri'],
+    'exp' => $now + 3600,
+    'iat' => $now,
+  ];
+  $jwt = JWT::encode($jwt_payload, $creds['private_key'], 'RS256');
+  $client = new Client();
+  $response = $client->post($creds['token_uri'], [
+    'form_params' => [
+      'grant_type' => 'urn:ietf:params:oauth:grant-type:jwt-bearer',
+      'assertion' => $jwt
+    ]
+  ]);
+  $token = json_decode($response->getBody(), true)['access_token']; 
+
+  return [
+    'client' => $client,
+    'token' => $token  
+  ];
+}
 
 function cialadama_sheetid(WP_REST_Request $req) {
   
@@ -14,24 +40,9 @@ function cialadama_sheetid(WP_REST_Request $req) {
 
   try { 
 
-    $creds = json_decode(file_get_contents(__DIR__ . '/cia-la-dama-efe00becf781.json'), true);
-    $now = time();
-    $jwt_payload = [
-      'iss' => $creds['client_email'],
-      'scope' => 'https://www.googleapis.com/auth/spreadsheets.readonly',
-      'aud' => $creds['token_uri'],
-      'exp' => $now + 3600,
-      'iat' => $now,
-    ];
-    $jwt = JWT::encode($jwt_payload, $creds['private_key'], 'RS256');
-    $client = new Client();
-    $response = $client->post($creds['token_uri'], [
-      'form_params' => [
-        'grant_type' => 'urn:ietf:params:oauth:grant-type:jwt-bearer',
-        'assertion' => $jwt
-      ]
-    ]);
-    $token = json_decode($response->getBody(), true)['access_token'];
+    $clienttoken = cialadama_gsheets_getclienttoken('https://www.googleapis.com/auth/spreadsheets.readonly');
+    $client = $clienttoken['client'];
+    $token = $clienttoken['token'];
     $spreadsheetId = '1CTgAiUkt_9fYDdIEvCfG4m_dyw7YHJyS8THtQzI6C_Y';
     $response = $client->get("https://sheets.googleapis.com/v4/spreadsheets/{$spreadsheetId}", [
       'headers' => [
@@ -56,26 +67,11 @@ function cialadama_readgsheet(WP_REST_Request $req) {
   
   $res = new WP_REST_Response();
 
-  try { 
+  try {    
 
-    $creds = json_decode(file_get_contents(__DIR__ . '/cia-la-dama-efe00becf781.json'), true);
-    $now = time();
-    $jwt_payload = [
-      'iss' => $creds['client_email'],
-      'scope' => 'https://www.googleapis.com/auth/spreadsheets.readonly',
-      'aud' => $creds['token_uri'],
-      'exp' => $now + 3600,
-      'iat' => $now,
-    ];
-    $jwt = JWT::encode($jwt_payload, $creds['private_key'], 'RS256');
-    $client = new Client();
-    $response = $client->post($creds['token_uri'], [
-      'form_params' => [
-        'grant_type' => 'urn:ietf:params:oauth:grant-type:jwt-bearer',
-        'assertion' => $jwt
-      ]
-    ]);
-    $token = json_decode($response->getBody(), true)['access_token'];
+    $clienttoken = cialadama_gsheets_getclienttoken('https://www.googleapis.com/auth/spreadsheets.readonly');
+    $client = $clienttoken['client'];
+    $token = $clienttoken['token'];
     $spreadsheetId = '1CTgAiUkt_9fYDdIEvCfG4m_dyw7YHJyS8THtQzI6C_Y';
     $range = 'Galerías!C1:C5';
     $response = $client->get("https://sheets.googleapis.com/v4/spreadsheets/{$spreadsheetId}/values/{$range}", [
@@ -97,30 +93,72 @@ function cialadama_readgsheet(WP_REST_Request $req) {
   return $res;
 }
 
+function cialadama_readgsheet_table(WP_REST_Request $req) {
+  
+  $res = new WP_REST_Response();
+
+  try {   
+
+    $clienttoken = cialadama_gsheets_getclienttoken('https://www.googleapis.com/auth/spreadsheets.readonly');
+    $client = $clienttoken['client'];
+    $token = $clienttoken['token'];
+    $spreadsheetId = '1CTgAiUkt_9fYDdIEvCfG4m_dyw7YHJyS8THtQzI6C_Y';
+    $range = 'Galerías!A1:C1000';
+    $response = $client->get("https://sheets.googleapis.com/v4/spreadsheets/{$spreadsheetId}/values/{$range}", [
+      'headers' => [
+        'Authorization' => "Bearer $token"
+      ]
+    ]);
+
+    $data = json_decode($response->getBody(), true);
+    $values = $data ['values'];
+    $table = [];
+    $page = '';
+    foreach($values as $value) {
+
+      if($value[0] != '') {
+
+        $page = $value[0];
+      };
+
+      if($value[0] == '') {
+
+        $clave = $value[1] ?? null;
+        if ($clave) {
+          
+          $table[$clave][] = [$value[2], $page];
+        }
+      }
+    }      
+
+    $saved = file_put_contents(
+      __DIR__ . '/tablepagesgalleries.json',
+      json_encode($table, JSON_PRETTY_PRINT)
+    );
+
+    $res->set_data([
+      'count' => count($table),
+      'table' => $table
+    ]);
+
+  } catch (Exception $e) {
+    
+    $res->set_status($e->getCode());
+    $res->set_data($e->getMessage());
+  }
+
+  return $res;
+}
+
 function cialadama_writegsheet(WP_REST_Request $req) {
   
   $res = new WP_REST_Response();
 
-  try { 
+  try {    
 
-    $creds = json_decode(file_get_contents(__DIR__ . '/cia-la-dama-efe00becf781.json'), true);
-    $now = time();
-    $jwt_payload = [
-      'iss' => $creds['client_email'],
-      'scope' => 'https://www.googleapis.com/auth/spreadsheets',
-      'aud' => $creds['token_uri'],
-      'exp' => $now + 3600,
-      'iat' => $now,
-    ];
-    $jwt = JWT::encode($jwt_payload, $creds['private_key'], 'RS256');
-    $client = new Client();
-    $response = $client->post($creds['token_uri'], [
-      'form_params' => [
-        'grant_type' => 'urn:ietf:params:oauth:grant-type:jwt-bearer',
-        'assertion' => $jwt
-      ]
-    ]);
-    $token = json_decode($response->getBody(), true)['access_token'];
+    $clienttoken = cialadama_gsheets_getclienttoken();
+    $client = $clienttoken['client'];
+    $token = $clienttoken['token'];
     $spreadsheetId = '1CTgAiUkt_9fYDdIEvCfG4m_dyw7YHJyS8THtQzI6C_Y';
     
     // Google folders list
@@ -304,6 +342,18 @@ add_action(
         array(
           'methods'  => 'GET',
           'callback' => 'cialadama_readgsheet',
+          'permission_callback' => '__return_true'
+        )
+      )
+    );
+
+    register_rest_route(
+      'cialadama',
+      'readgsheet/table',
+      array(
+        array(
+          'methods'  => 'GET',
+          'callback' => 'cialadama_readgsheet_table',
           'permission_callback' => '__return_true'
         )
       )
