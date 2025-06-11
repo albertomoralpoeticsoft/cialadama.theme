@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CIA LA DAMA CREATE ALBUMS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <style>
+
+
+    </style>
+  </head>
+  <body>
+    <div class="creating">Creando: <span id="album">Cargando lista...</span></div>
+    <script>
+
+      const album = document.getElementById('album')
+      let albums
+      let actualalbum = 0
+
+      let list = ''
+
+      const creategallery = () => {
+
+        const albumtitle = albums[actualalbum]
+        // const albumtitle = 'SESIONES ESPECIALES - FORMACIÓN REGULAR Cia La Dama 24-25 (Marta Gómez)'
+        
+        album.innerHTML = list
+
+        fetch(
+          '/wp-json/cialadama/creategallery',
+          {
+            method: 'POST',
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              albumtitle: albumtitle
+            })
+          }
+        )
+        .then(response => {
+          
+          response.json()
+          .then(result => {
+
+            list += `
+            <div> </div>
+            <div> </div>
+            <div>****************************************</div>
+            <div>${ albumtitle }</div>
+            <div>----------------------------------------</div>
+            ` +
+            result
+            .map(file => `<div>${ file }</div>`)
+            .join('')
+
+            actualalbum++
+            if(actualalbum < albums.length) {
+
+              creategallery()
+
+            } else {
+
+              console.log('end')
+            }
+          })
+        })         
+      }
+
+      fetch('/wp-json/cialadama/googlefolders')
+      .then(response => response.json().then(list => {        
+
+        albums = list.albums
+
+        creategallery()
+      }))
+
+    </script>
+  </body>
+</html>

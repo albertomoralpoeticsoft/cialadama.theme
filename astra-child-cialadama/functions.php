@@ -111,13 +111,26 @@ add_action(
   }
 );
 
+add_filter(
+  'intermediate_image_sizes_advanced', 
+  function($sizes) {
+
+    return array_intersect_key(
+      $sizes, 
+      array_flip(['thumbnail', 'medium', 'large'])
+    );
+  }
+);
+
 // Head clean!
 
 require_once(dirname(__FILE__) . '/cleanhead.php');
 
 // Api!
 
-require_once(dirname(__FILE__) . '/api.php');
+require_once(dirname(__FILE__) . '/api/galleries.php');
+require_once(dirname(__FILE__) . '/api/process.php');
+require_once(dirname(__FILE__) . '/api/gsheets.php');
 
 // Gallery hacks!
 

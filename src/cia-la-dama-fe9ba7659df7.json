@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "cia-la-dama",
+  "private_key_id": "fe9ba7659df76208163e03d6d9e9f28d6c079236",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDKZScnxAzsOF99\n9omV9opXmCPfjjdTsGRVdND3ugEBaEOPenFTGmtDPud8+E8reDV/bqUAgGHyLYIs\nJbip/pP/OyCa6Wkubs4vsQ+pJf9EYmIDUx76LZAVDWCENipKZHk/MHcHDVWuuokq\nkvzwphPQHkcxNk2Pn+5tbcOl+qpCpsCIvL4Y7yPUS8qKXo0I6gggmr1bD1D9FJBQ\nMVos6Borkp02qZr3uHvjGEmkN649vAIZWfjOgAl1RVl2i9CYheXNNG+fxqV57U7R\nE2jObtHlGUu3PVRKKAgUZTD4UtIw6IDS13FYpKmszgwildo36Yci0dQVRqbm0YS/\n+4ocYj29AgMBAAECggEAWn37kcYQWRWjbHhsb8Z5eEynzW6SwjJdye+e9wQNKwnp\nGx+Nx7BKQRjA+5kyHKd0k/Nuhtjf8h3y07ZR6H/QwA85tsmho4cbXSt3axN4HKU4\nWXAyq3zvrNn8S2DEa9qcc2pB7b9CjgsNBSIPQbGfri+7eP9kklDZk8e98FoxAfcs\nCnGnjERDlhMYX5JpsYeM7gJhRa7EKGi3Wsee/pIBkewlCSnah7wT98gxwpoQyd7G\nkRmTll5Jm9mwRQ+j0xTvUJDF7ZVPEeMFEdDQUxZ0hgkmJ893XnhAZf7+U3RP3xnR\nJvKNklbAsCPkiD78LWMHv34vvyg38J6ebMqobsM/qQKBgQD75VUeBAngujDystQE\nSKfChEKdibCzAUTK107tyQbZl/w6T7p6bf8NnG180m5VevcxlI9Wx5rXMbbZf1zI\n2Z0gbE7GC6GtWfadBUyl3W8zn9qhzcYzrMysgdLGhJDQWS3IIFAC1sfaiul6hhZv\n3rOUQK7+CKJAuuJjI7JHEk+28wKBgQDNsVnfvLo1nBUFSLDXhU+VHh+xLUu638Js\nhT85wEl2FIHdSl3JoTzrVUGCsPA63V3pNZ6BzouYC0yOD1UdNslMXQjmzTxuF/FS\nZwbjDtp5PY82qvMSccgw1LaeFOPkxbwVCV+bDmEW/e2LTWIb8WRQEDshasVKpNx+\n57Vkk1PEjwKBgQDYAimju8Lcu84N0dyOb9+sps6ZWeH1Hzlm2IwOzTzai8L4HjbD\nlmAJxAL/71Q+aVxhYAwrVrApqbArg1SFyFc93qMOohrbFTKuJEU+V01s78AE0PkO\nhzhdFlcxdazZfiAMZek3BggMGONu9l13QXqtv2pQ3gaFi71nVs0itUk2kQKBgQCg\nea8+iQVV8fHMb4vYeV8/XYMoPciJgS00cTiEm+o0P4eZ1/0X472ddKRpjBXANxif\na3/Akh4Cfz44zul+o1GlTCg3uQNeeTuDKHIND3ePg2GKKxD84NxojGv1JSMvRr2Y\nQ/ndBPjmcTG0rqjOWCQE+sTHK3/E3p5QPAIe93oxLQKBgD6YqDPqlYpXsL+B/7FH\nBBcxSfoIfgSuZQbtqv4mZfbIn4pTtMYtxCI7RUD1Q+Vwp8EBuWOf8aJHGWzhc7nE\nUyXNb0TzikGUw0zg4ohU+xc3u7boFeyT3S8DyhdtxQLJWMAt01b8jAFce+tGgsBh\nF4jVbEqpeOrbUvSMSL0gqx5k\n-----END PRIVATE KEY-----\n",
+  "client_email": "gesti-n-de-migracion-gphotos@cia-la-dama.iam.gserviceaccount.com",
+  "client_id": "107035273992222261662",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/gesti-n-de-migracion-gphotos%40cia-la-dama.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

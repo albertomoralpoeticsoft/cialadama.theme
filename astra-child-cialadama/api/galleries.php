@@ -144,6 +144,92 @@ function cialadama_testcontentdom (WP_REST_Request $req) {
   return $res;
 }
 
+function cialadama_pagesgalleries (WP_REST_Request $req) {
+  
+  $res = new WP_REST_Response();
+
+  try {   
+
+    $pages = get_pages(); 
+    $pageswithgalleries = [];
+
+    foreach($pages as $page) {
+
+      $content = $page->post_content;
+
+      $matches = null;
+      preg_match_all( 
+        '/' . get_shortcode_regex() . '/',
+        $content, 
+        $matches, 
+        PREG_SET_ORDER
+      );
+
+      if(count($matches) > 0) {
+        
+        $contenthtml = '<html><head><meta 
+        charset="UTF-8"><meta 
+        http-equiv="Content-Type" content="text/html; charset=utf-8">
+        </head><body>' .
+          $content .
+        '</body></html>';
+      
+        $remove = ["\r\n", "\n", "\r", "\t", "\s"];
+        $cleancontent = str_replace($remove, '', $contenthtml);
+
+        $contentdom = new DOMDocument('1.0');
+        $contentdom->substituteEntities = false;
+        libxml_use_internal_errors(true);
+        $contentdom->loadHTML($cleancontent);
+        libxml_use_internal_errors(false);
+        $contentdomx = new DOMXPath($contentdom);
+
+        $galleries = [];
+      
+        foreach ($contentdomx->query('//comment()') as $comment) {
+
+          $comment->parentNode->removeChild($comment);
+        }
+      
+        foreach ($contentdomx->query('//text()') as $text) {
+
+          $texttext = $text->textContent;
+
+          if(str_starts_with($texttext, '[gallery')) {
+
+            $title = $text->previousSibling->textContent;
+
+            $galleries[] = $title;
+          }
+        }
+
+        if(count($galleries)) {
+
+          $pageswithgalleries[] = [
+            'title' => $page->post_title,
+            'url' => 'https://cialadama.com/' . $page->post_name,
+            'galleries' => $galleries
+          ];
+        }
+      }
+    }   
+
+    $saved = file_put_contents(
+      __DIR__ . '/pageswithgalleries.json',
+      json_encode($pageswithgalleries, JSON_PRETTY_PRINT)
+    );
+    
+    $res->set_data($pageswithgalleries);
+
+  } catch (Exception $e) {
+    
+    $res->set_status($e->getCode());
+    $res->set_data($e->getMessage());
+  }
+
+  return $res;
+}
+
 function cialadama_createshortcodelist (WP_REST_Request $req) {
   
   $res = new WP_REST_Response();
@@ -277,6 +363,41 @@ function cialadama_createfolderslist (WP_REST_Request $req) {
   return $res;
 }
 
+function cialadama_googlefolders(WP_REST_Request $req) {
+  
+  $res = new WP_REST_Response();
+
+  try { 
+    
+    $googlefolderslist = cialadama_googlefolders_list();
+    $googlefolders = [];
+    foreach($googlefolderslist as $googlefolder) {
+
+      if($googlefolder['albumtitle']) {
+
+        $googlefolders[] = $googlefolder['albumtitle'];
+      }
+    }    
+
+    $saved = file_put_contents(
+      __DIR__ . '/googlefolderslist.json',
+      json_encode($googlefolders, JSON_PRETTY_PRINT)
+    );
+
+    $res->set_data([
+      'count' => count($googlefolders),
+      'albums' => $googlefolders
+    ]);
+
+  } catch (Exception $e) {
+    
+    $res->set_status($e->getCode());
+    $res->set_data($e->getMessage());
+  }
+
+  return $res;
+}
+
 function cialadama_creategalleries (WP_REST_Request $req) {
   
   $res = new WP_REST_Response();
@@ -388,6 +509,30 @@ add_action(
         array(
           'methods'  => 'GET',
           'callback' => 'cialadama_createfolderslist',
+          'permission_callback' => '__return_true'
+        )
+      )
+    );
+
+    register_rest_route(
+      'cialadama',
+      'pagesgalleries',
+      array(
+        array(
+          'methods'  => 'GET',
+          'callback' => 'cialadama_pagesgalleries',
+          'permission_callback' => '__return_true'
+        )
+      )
+    );
+
+    register_rest_route(
+      'cialadama',
+      'googlefolders',
+      array(
+        array(
+          'methods'  => 'GET',
+          'callback' => 'cialadama_googlefolders',
           'permission_callback' => '__return_true'
         )
       )
