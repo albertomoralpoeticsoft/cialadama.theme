@@ -22,8 +22,7 @@
 
       const creategallery = () => {
 
-        const albumtitle = albums[actualalbum]
-        // const albumtitle = 'SESIONES ESPECIALES - FORMACIÓN REGULAR Cia La Dama 24-25 (Marta Gómez)'
+        const albumdata = albums[actualalbum]
         
         album.innerHTML = list
 
@@ -34,9 +33,7 @@
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify({
-              albumtitle: albumtitle
-            })
+            body: JSON.stringify(albumdata)
           }
         )
         .then(response => {
@@ -48,7 +45,11 @@
             <div> </div>
             <div> </div>
             <div>****************************************</div>
-            <div>${ albumtitle }</div>
+            <div>${ albumdata.albumtitle }</div>
+            <div>----------------------------------------</div>
+            <div>${ albumdata.folder }</div>
+            <div>----------------------------------------</div>
+            <div>${ result.length } images</div>
             <div>----------------------------------------</div>
             ` +
             result
@@ -71,8 +72,8 @@
       fetch('/wp-json/cialadama/googlefolders')
       .then(response => response.json().then(list => {        
 
-        albums = list.albums
-
+        albums = list
+        
         creategallery()
       }))
 

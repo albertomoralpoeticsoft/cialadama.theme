@@ -128,9 +128,9 @@ require_once(dirname(__FILE__) . '/cleanhead.php');
 
 // Api!
 
-require_once(dirname(__FILE__) . '/api/galleries.php');
-require_once(dirname(__FILE__) . '/api/process.php');
+// require_once(dirname(__FILE__) . '/api/galleries.php');
 require_once(dirname(__FILE__) . '/api/gsheets.php');
+require_once(dirname(__FILE__) . '/api/process.php');
 
 // Gallery hacks!
 
