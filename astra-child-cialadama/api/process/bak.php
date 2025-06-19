@@ -4,6 +4,27 @@ require_once(get_stylesheet_directory() . '/pretty/vendor/autoload.php');
 
 use FileBird\Model\Folder as FolderModel;
 
+function cialadama_getfolderimages($folder) {
+
+  $files = scandir($folder);
+  $images = [];
+  foreach($files as $filename) {
+
+    if(
+      $filename !== '.'
+      &&
+      $filename !== '..'
+      &&
+      !str_contains($filename, '.json')
+    ) {
+
+      $images[] = $filename;
+    }
+  }
+
+  return $files;
+}
+
 function cialadama_googlefolders(WP_REST_Request $req) {
   
   $res = new WP_REST_Response();
@@ -102,7 +123,19 @@ function cialadama_creategallery (WP_REST_Request $req) {
     $basedir = $uploaddir['basedir'];
     $filebirdbasedir = $basedir . '/google-filebird/';
     $destfolder = $filebirdbasedir . $albumtitle;  
-    if(!is_dir($destfolder)) {
+    if(is_dir($destfolder)) {
+
+      $album = cialadama_getfolderimages($folder);
+      $dest = cialadama_getfolderimages($destfolder);
+
+      $res->set_data([
+        'album' => count($album),
+        'dest' => count($dest)
+      ]);
+
+      return $res;
+
+    } else {
 
       mkdir($destfolder, 0755, true);
     }

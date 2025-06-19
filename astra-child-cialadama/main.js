@@ -1,10 +1,10 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/app/googlephotos.js":
-/*!*********************************!*\
-  !*** ./src/app/googlephotos.js ***!
-  \*********************************/
+/***/ "./src/app/flickitygallery.js":
+/*!************************************!*\
+  !*** ./src/app/flickitygallery.js ***!
+  \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -12,11 +12,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+// https://github.com/metafizzy/flickity
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function ($) {
-  var $ssc = $('.susbstituteshortcode');
+  var $flickitygallery = $('.carousel.flickitygallery');
 
-  if ($ssc.length) {
-    console.log($ssc.length);
+  if ($flickitygallery.length) {
+    $flickitygallery.each(function () {
+      var $this = $(this);
+      var $view = $this.prev().eq(0);
+      var firstimg = $this.find('.carousel-cell').on('click', function () {
+        var url = $(this).data('view');
+        console.log(url);
+        console.log($view);
+        $view.css('background-image', 'url("' + url + '")');
+      }).first().data('view');
+      $view.css('background-image', 'url("' + firstimg + '")');
+      $this.flickity({
+        autoPlay: false,
+        prevNextButtons: false,
+        wrapAround: true,
+        pageDots: false,
+        lazyLoad: 6
+      });
+    });
   }
 });
 
@@ -30,15 +48,17 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _googlephotos__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./googlephotos */ "./src/app/googlephotos.js");
+/* harmony import */ var _flickitygallery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./flickitygallery */ "./src/app/flickitygallery.js");
 // import animate from './animate'
 // import paralax from './paralax'
+// import googlephotos from './googlephotos'
 
 
 (function ($) {
   // animate($)
   // paralax($)
-  (0,_googlephotos__WEBPACK_IMPORTED_MODULE_0__["default"])($);
+  // googlephotos($)
+  (0,_flickitygallery__WEBPACK_IMPORTED_MODULE_0__["default"])($);
 })(jQuery);
 
 /***/ }),

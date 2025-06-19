@@ -1,0 +1,31 @@
+.woocommerce-js {
+
+  header.entry-header {
+
+    display: none;
+  }
+
+  .woocommerce,
+  .ast-woocommerce-container {
+
+    padding-top: 120px;
+  
+    div.product {  
+
+      .woocommerce-product-gallery {
+
+        margin-bottom: 0 !important;
+      }
+
+      .summary.entry-summary {
+
+        margin-bottom: 0 !important;      
+      }
+
+      .woocommerce-tabs {
+
+        padding-top: 0 !important;
+      }
+    }
+  }
+}

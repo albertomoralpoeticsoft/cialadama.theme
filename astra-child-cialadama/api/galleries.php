@@ -63,7 +63,7 @@ function cialadama_testcontentdom (WP_REST_Request $req) {
       $content = $page->post_content;
       $matches = null;
       preg_match_all( 
-        '/' . get_shortcode_regex() . '/', 
+        '/' . get_shortcode_regex(['gallery']) . '/', 
         $content, 
         $matches, 
         PREG_SET_ORDER

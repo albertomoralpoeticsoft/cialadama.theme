@@ -60,6 +60,14 @@ add_action(
 	function () {
 
     wp_enqueue_script(
+      'astra-child-cialadama-theme-flickity-js', 
+      get_stylesheet_directory_uri() . '/flickity.pkgd.min.js',
+      array(), 
+      filemtime(get_stylesheet_directory() . '/flickity.pkgd.min.js'),
+      true
+    );
+
+    wp_enqueue_script(
       'astra-child-cialadama-theme-js', 
       get_stylesheet_directory_uri() . '/main.js',
       array('jquery'), 
@@ -126,11 +134,9 @@ add_filter(
 
 require_once(dirname(__FILE__) . '/cleanhead.php');
 
-// Api!
+// Api process galleries
 
-// require_once(dirname(__FILE__) . '/api/galleries.php');
-require_once(dirname(__FILE__) . '/api/gsheets.php');
-require_once(dirname(__FILE__) . '/api/process.php');
+require_once(dirname(__FILE__) . '/api/process/main.php');
 
 // Gallery hacks!
 

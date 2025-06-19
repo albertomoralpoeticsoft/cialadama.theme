@@ -1,0 +1,143 @@
+<?php
+
+require_once(get_stylesheet_directory() . '/pretty/vendor/autoload.php');
+
+use FileBird\Model\Folder as FolderModel;
+
+function cialadama_pagesgalleries (WP_REST_Request $req) {
+  
+  $res = new WP_REST_Response();
+
+  try {   
+
+    $tablepagesgalleries = json_decode(file_get_contents(__DIR__ . '/tablepagesgalleries.json'));
+    $GPname = 'Google Photos';
+    $GP_folder = FolderModel::newOrGet($GPname, 0);
+
+    // $pages = get_pages(); 
+    $pageswithgalleries = [];
+
+    $pagetestids = [8842]; 
+    $pages = get_posts([
+      'post_type' => 'page',
+      'post__in' => $pagetestids,
+      'orderby' => 'post__in', // mantiene el orden del array
+      'numberposts' => -1 // trae todos los resultados
+    ]);
+
+    foreach($pages as $page) {
+
+      $content = $page->post_content;
+
+      $matches = null;
+      preg_match_all( 
+        '/' . get_shortcode_regex(['poeticsoft-gallery']) . '/',
+        $content, 
+        $matches, 
+        PREG_SET_ORDER
+      );
+
+      if(count($matches) > 0) {        
+      
+        $remove = ["\r\n", "\n", "\r", "\t", "\s"];
+        $content = str_replace($remove, '', $content);
+        
+        $contenthtml = '<html><head><meta 
+        charset="UTF-8"><meta 
+        http-equiv="Content-Type" content="text/html; charset=utf-8">
+        </head><body>' .
+          $content .
+        '</body></html>';
+      
+        $contentdom = new DOMDocument('1.0');
+        $contentdom->substituteEntities = false;
+        libxml_use_internal_errors(true);
+        $contentdom->loadHTML($contenthtml);
+        libxml_use_internal_errors(false);
+        $contentdomx = new DOMXPath($contentdom);
+
+        $galleries = [];
+        $texts = [];
+      
+        foreach ($contentdomx->query('//text()') as $text) {
+
+          $texttext = $text->textContent;
+
+          if(str_contains($texttext, '[poeticsoft-gallery')) {
+
+            // LOCALIZACION DEL TITULO
+            
+            $title = $text->previousSibling->previousSibling->previousSibling->textContent;  
+            
+            // Todo para esto
+            
+            $mediafolder = $tablepagesgalleries->$title[0][0];            
+            $mediafolderid = FolderModel::newOrGet($mediafolder, $GP_folder['id']);
+
+            $text->textContent = str_replace('testfolder="FBFolder" ', '', $text->textContent);
+
+            $galleries[] = [
+              'title' => $title,
+              'FBFolder' => $mediafolder,
+              'mediafolder' => $mediafolderid,
+              'texttext' => $texttext
+            ];
+          }
+        }
+
+        if(count($galleries)) {
+
+          $pageswithgalleries[] = [
+            'title' => $page->post_title,
+            'url' => 'https://cialadama.com/' . $page->post_name,
+            'galleries' => $galleries
+          ];
+
+          $body = $contentdom->getElementsByTagName('body')->item(0);
+          $transformedcontent = '';
+          foreach ($body->childNodes as $child) {
+
+            $transformedcontent .= $contentdom->saveHTML($child);
+          }
+
+          wp_update_post([
+            'ID' => $page->ID,
+            'post_content' => $transformedcontent,
+          ]);
+        }
+      }
+    }   
+
+    // $saved = file_put_contents(
+    //   __DIR__ . '/pageswithgalleries.json',
+    //   json_encode($pageswithgalleries, JSON_PRETTY_PRINT)
+    // );
+    
+    $res->set_data($pageswithgalleries);
+
+  } catch (Exception $e) {
+    
+    $res->set_status($e->getCode());
+    $res->set_data($e->getMessage());
+  }
+
+  return $res;
+}
+
+add_action(
+  'rest_api_init',
+  function () {
+
+    register_rest_route(
+      'cialadama',
+      'pagesgalleries',
+      array(
+        array(
+          'methods'  => 'GET',
+          'callback' => 'cialadama_pagesgalleries',
+          'permission_callback' => '__return_true'
+        )
+      )
+    );
+  }
+);

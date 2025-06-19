@@ -320,3 +320,42 @@ body.postid-7317 .wdgk_donation_content .wdgk_display_option .wdgk_donation {
   margin-block-end: 100px;
   color: var(--ast-global-color-3);
 }
+
+.shortcode-poeticsoft-gallery {
+  max-width: 500px;
+  margin: 0 auto;
+}
+.shortcode-poeticsoft-gallery .galleryview {
+  padding: 0 0 100% 0;
+  background-color: var(--ast-global-color-1);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0 0 2px 0;
+}
+.shortcode-poeticsoft-gallery .carousel.flickitygallery .flickity-viewport .flickity-slider .carousel-cell {
+  height: 100px;
+}
+.shortcode-poeticsoft-gallery .carousel.flickitygallery .flickity-viewport .flickity-slider .carousel-cell img {
+  height: 100%;
+}
+
+.woocommerce-js header.entry-header {
+  display: none;
+}
+.woocommerce-js .woocommerce,
+.woocommerce-js .ast-woocommerce-container {
+  padding-top: 120px;
+}
+.woocommerce-js .woocommerce div.product .woocommerce-product-gallery,
+.woocommerce-js .ast-woocommerce-container div.product .woocommerce-product-gallery {
+  margin-bottom: 0 !important;
+}
+.woocommerce-js .woocommerce div.product .summary.entry-summary,
+.woocommerce-js .ast-woocommerce-container div.product .summary.entry-summary {
+  margin-bottom: 0 !important;
+}
+.woocommerce-js .woocommerce div.product .woocommerce-tabs,
+.woocommerce-js .ast-woocommerce-container div.product .woocommerce-tabs {
+  padding-top: 0 !important;
+}

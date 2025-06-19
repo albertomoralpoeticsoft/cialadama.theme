@@ -1,0 +1,34 @@
+.shortcode-poeticsoft-gallery {
+
+  max-width: 500px;
+  margin: 0 auto;
+
+  .galleryview {
+
+    padding: 0 0 100% 0;
+    background-color: var(--ast-global-color-1);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0 0 2px 0;
+  }
+
+  .carousel.flickitygallery {
+
+    .flickity-viewport {
+
+      .flickity-slider {
+
+        .carousel-cell {
+
+          height: 100px;
+
+          img {
+
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+}

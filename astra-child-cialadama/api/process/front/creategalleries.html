@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CIA LA DAMA CREATE ALBUMS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <style></style>
+  </head>
+  <body>
+    <div class="creating">Creando: <span id="album">Cargando lista...</span></div>
+    <script>
+
+      const album = document.getElementById('album')
+      let albums
+      let actualalbum = 0
+
+      let list = ''
+
+      const creategallery = () => {
+
+        const albumdata = albums[actualalbum]
+
+        list += `
+          <div> </div>
+          <div> </div>
+          <div>****************************************</div>
+          <div>${ albumdata.albumtitle }</div>
+          <div>----------------------------------------</div>
+          <div>${ albumdata.folder }</div>
+          <div>----------------------------------------</div>
+          <div>${ albumdata.images.length } imágenes</div>
+          <div>----------------------------------------</div>
+        `        
+        album.innerHTML = list
+
+        // fetch(
+        //   '/wp-json/cialadama/creategallery',
+        //   {
+        //     method: 'POST',
+        //     headers: {
+        //       "Content-Type": "application/json"
+        //     },
+        //     body: JSON.stringify(albumdata)
+        //   }
+        // )
+        // .then(response => {
+          
+        //   response.json()
+        //   .then(result => {
+
+        //     console.log(result)
+        //     console.log(Array.isArray(result))
+
+        //     list += `
+        //     <div> </div>
+        //     <div> </div>
+        //     <div>****************************************</div>
+        //     <div>${ albumdata.albumtitle }</div>
+        //     <div>----------------------------------------</div>
+        //     <div>${ albumdata.folder }</div>
+        //     <div>----------------------------------------</div>
+        //     <div>${ result.length } images</div>
+        //     <div>----------------------------------------</div>
+        //     `
+
+        //     if(Array.isArray(result)) {
+
+        //       list += result
+        //       .map(file => `<div>${ file }</div>`)
+        //       .join('')
+        //     } else {
+
+        //       list += `<div>Album: ${ result.album } - Dest: ${ result.dest }</div>`
+        //     }
+
+        //     actualalbum++
+        //     if(actualalbum < albums.length) {
+
+        //       creategallery()
+
+        //     } else {
+
+        //       console.log('end')
+        //     }
+        //   })
+        // })      
+        
+        setTimeout(() => {
+
+          actualalbum++
+          if(actualalbum < albums.length) {
+
+            creategallery()
+
+          } else {
+
+            console.log('end')
+          }
+
+        }, 200)
+      }
+
+      fetch('/wp-json/cialadama/googlefolders')
+      .then(response => response.json().then(list => {        
+
+        albums = list
+
+        console.log(albums)
+        
+        creategallery()
+      }))
+
+    </script>
+  </body>
+</html>
