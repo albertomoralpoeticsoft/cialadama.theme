@@ -22,8 +22,6 @@ __webpack_require__.r(__webpack_exports__);
       var $view = $this.prev().eq(0);
       var firstimg = $this.find('.carousel-cell').on('click', function () {
         var url = $(this).data('view');
-        console.log(url);
-        console.log($view);
         $view.css('background-image', 'url("' + url + '")');
       }).first().data('view');
       $view.css('background-image', 'url("' + firstimg + '")');
@@ -133,7 +131,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
 (() => {
 /*!************************************************************************************************************************!*\
   !*** ./node_modules/webpack-polyfill-injector/src/loader.js?{"modules":["./src/app/main.js","./src/scss/main.scss"]}! ***!

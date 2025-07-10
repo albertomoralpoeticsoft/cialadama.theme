@@ -21,9 +21,6 @@ export default $ => {
 
           const url = $(this).data('view')
 
-          console.log(url)
-          console.log($view)
-
           $view.css(
             'background-image',
             'url("' + url + '")'

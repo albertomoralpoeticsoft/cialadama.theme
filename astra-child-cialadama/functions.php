@@ -136,7 +136,7 @@ require_once(dirname(__FILE__) . '/cleanhead.php');
 
 // Api process galleries
 
-require_once(dirname(__FILE__) . '/api/process/main.php');
+require_once(dirname(__FILE__) . '/api/galleries/main.php');
 
 // Gallery hacks!
 

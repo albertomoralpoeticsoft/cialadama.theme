@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CIA LA DAMA CREATE ALBUMS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <style></style>
+  </head>
+  <body>
+
+    <div id="process"></div>
+    <div id="album"></div>
+    <div id="image"></div>
+    <button id="stop">STOP</button>
+
+    <script>
+
+      const $process = document.getElementById('process')
+      const $album = document.getElementById('album')
+      const $image = document.getElementById('image')
+      const $stop = document.getElementById('stop')
+      const hash = window.location.hash.substring(1) || '0'
+      const hashalbum = parseInt(hash)
+      let running = true
+
+      console.log(hashalbum)
+
+      $stop.addEventListener(
+        'click',
+        () => {
+
+          running = false
+          $process.innerHTML = 'Parado'
+          $album.innerHTML = ''
+          $image.innerHTML = ''
+        }
+      )
+
+      let albums
+      let actualalbum = hashalbum
+      let images
+      let imageactual = 0
+      let FBFolder
+
+      $process.innerHTML = 'Cargando albumes'
+
+      const processImage = () => {     
+        
+        if(!running) { return }
+
+        const image = images[imageactual]
+      
+        $process.innerHTML = 'procesando imagen...'
+        $image.innerHTML = (imageactual + 1) + '/' + images.length + ' - ' + image
+
+        const body = albums[actualalbum]
+        body.image = image       
+        body.fbfolder = FBFolder       
+
+        fetch(
+          '/wp-json/cialadama/processimage',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+          }
+        )
+        .then(response => response.json().then(result => { 
+          
+          console.log(result)
+
+          imageactual ++ 
+          
+          if(imageactual < images.length) {
+
+            processImage()
+
+          } else {
+
+            actualalbum ++
+
+            if(actualalbum < albums.length) {
+
+              processAlbum()
+
+            } else {
+
+              $process.innerHTML = 'end'
+            }
+          }
+        }))
+      }
+
+      const processAlbum = () => {    
+        
+        if(!running) { return }
+
+        const album = albums[actualalbum]
+      
+        $process.innerHTML = 'procesando album...'
+        $album.innerHTML = (actualalbum + 1) + '/' + albums.length + ' - ' + album.albumtitle
+        imageactual = 0
+        images = album.images
+
+        fetch(
+          '/wp-json/cialadama/processalbum',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(album)
+          }
+        )
+        .then(response => response.json().then(response => { 
+          
+          FBFolder = response.id
+
+          processImage()
+        }))
+      }
+
+      fetch('/wp-json/cialadama/googlefolders')
+      .then(response => response.json().then(list => {        
+
+        albums = list
+      
+        $process.innerHTML = 'Albumes cargados'
+        
+        processAlbum()
+      }))
+
+    </script>
+  </body>
+</html>

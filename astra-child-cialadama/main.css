@@ -322,8 +322,9 @@ body.postid-7317 .wdgk_donation_content .wdgk_display_option .wdgk_donation {
 }
 
 .shortcode-poeticsoft-gallery {
-  max-width: 500px;
+  max-width: calc(100% - 40px);
   margin: 0 auto;
+  padding-bottom: 20px;
 }
 .shortcode-poeticsoft-gallery .galleryview {
   padding: 0 0 100% 0;
@@ -334,7 +335,8 @@ body.postid-7317 .wdgk_donation_content .wdgk_display_option .wdgk_donation {
   margin: 0 0 2px 0;
 }
 .shortcode-poeticsoft-gallery .carousel.flickitygallery .flickity-viewport .flickity-slider .carousel-cell {
-  height: 100px;
+  height: 70px;
+  margin: 0 0 0 2px;
 }
 .shortcode-poeticsoft-gallery .carousel.flickitygallery .flickity-viewport .flickity-slider .carousel-cell img {
   height: 100%;

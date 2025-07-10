@@ -2,7 +2,12 @@
 use FileBird\Classes\Tree;
 use FileBird\Classes\Helpers as Helpers;
 
-function poeticsoft_filebird_findfolder_bytitle($folders, $title) {
+function poeticsoft_filebird_findfolder_bytitle($title, $folders = NULL) {
+
+  if(!$folders) {
+
+    $folders = Tree::getFolders(null);
+  }   
 
   foreach ($folders as $folder) {
 
@@ -11,12 +16,13 @@ function poeticsoft_filebird_findfolder_bytitle($folders, $title) {
       && 
       $folder['text'] === $title
     ) {
-        return $folder;
+      
+      return $folder;
     }
 
     if (!empty($folder['children'])) {
 
-      $found = poeticsoft_filebird_findfolder_bytitle($folder['children'], $title);
+      $found = poeticsoft_filebird_findfolder_bytitle($title, $folder['children']);
       
       if ($found) {
 
@@ -26,21 +32,21 @@ function poeticsoft_filebird_findfolder_bytitle($folders, $title) {
   }
 }
 
+// add_shortcode(
+//   'gallery', 
+//   function($atts) {
+
+//     return '<div class="susbstituteshortcode">Galería en construcción</div>';
+//   }
+// );
+
 add_shortcode(
   'gallery', 
   function($atts) {
 
-    return '<div class="susbstituteshortcode">Galería en construcción</div>';
-  }
-);
-
-add_shortcode(
-  'poeticsoft-gallery', 
-  function($atts) {
-
-    $folders = Tree::getFolders(null);
     $foldertitle = $atts['folder'];
-    $folder = poeticsoft_filebird_findfolder_bytitle($folders, $foldertitle);
+    $folder = poeticsoft_filebird_findfolder_bytitle($foldertitle);
+
     $folderid = $folder['id'];
     $imageids = Helpers::getAttachmentIdsByFolderId($folderid);
     $imageslist = array_map(
